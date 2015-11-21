@@ -10,11 +10,13 @@ import android.widget.Button;
 
 public class MainActivity extends Activity {
     Button callTheSecondApp;
+    Button sendBroadcast;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         callTheSecondApp = (Button) findViewById(R.id.button);
+        sendBroadcast = (Button)findViewById(R.id.button2);
 
         callTheSecondApp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -22,6 +24,18 @@ public class MainActivity extends Activity {
                 Intent i = new Intent();
                 i.setClassName("com.somitsolutions.custompermissioncalledapp", "com.somitsolutions.custompermissioncalledapp.MainActivity");
                 startActivity(i);
+            }
+        });
+
+        sendBroadcast.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent broadcast = new Intent();
+                broadcast.setAction("com.somitsolutions.custompermissioncalledapp.custom_action");
+
+                //Here we are attaching a custome permission with the broadcast. The receiving application
+                //Will have to have this permission in their manifest to intercep this broadcast
+                sendBroadcast(broadcast,"com.somitsolutions.custompermissioncallerapp.custompermissionforreceivingbroadcast"); /*adding custom permission*/
             }
         });
     }

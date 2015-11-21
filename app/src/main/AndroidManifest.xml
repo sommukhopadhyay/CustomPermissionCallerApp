@@ -2,7 +2,15 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.somitsolutions.custompermissioncallerapp" >
 
+    <!--  Declaring the special permission for receiving broadcast-->
+    <permission android:name="com.somitsolutions.custompermissioncallerapp.custompermissionforreceivingbroadcast"
+        android:label="broadcast_permission"
+        android:protectionLevel="dangerous">
+    </permission>
+
+
     <uses-permission android:name="com.somitsolutions.custompermissioncalledapp.custompermission"/>
+
 
     <application
         android:allowBackup="true"
